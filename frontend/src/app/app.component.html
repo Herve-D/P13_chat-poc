@@ -1,68 +1,81 @@
-<h1>
-  Chat Support
-</h1>
+<div class="p-3">
 
-<div>
-  <div>
-    Please enter your username :
-    <input type="text" id="username" [(ngModel)]="username" placeholder="Username" />
-    <button [disabled]="connected || !this.username" (click)="connect()">Start</button>
-    <button [disabled]="!connected" (click)="disconnect()">Stop</button>
-  </div>
-  <div *ngIf="connected">
-    <div>
-      <input type="text" id="text" [(ngModel)]="text" placeholder="Text" />
-      <button [disabled]="!text" (click)="sendMessage()">Send</button>
+  <div class="row align-items-center">
+    <div class="col-sm-auto">
+      <img src="../favicon.ico" alt="Your Car Your Way">
+    </div>
+    <div class="col-sm">
+      <h1>
+        Chat Support
+      </h1>
     </div>
   </div>
-</div>
 
-<div>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>
-            <h3> Sent :</h3>
-          </th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let message of sent">
-        <tr>
-          <td>
-            <b>
-              {{message.time | date: "MMM d, y 'at' h:mm a"}}
-            </b>
-            <p>
-              {{message.text}}
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="p-4">
+
+    <div>
+      <span class="m-4">
+        Please enter your username :
+        <input type="text" id="username" [(ngModel)]="username" placeholder="Username" />
+      </span>
+      <button class="m-2" [disabled]="connected || !this.username" (click)="connect()">Start</button>
+      <button class="m-2" [disabled]="!connected" (click)="disconnect()">Stop</button>
+      <div class="m-4" *ngIf="connected" style="display: flex; align-items: center;">
+        <input class="m-2" type="text" id="text" [(ngModel)]="text" placeholder="Text" />
+        <p-button class="m-2" icon="pi pi-send" [disabled]="!text" (click)="sendMessage()"></p-button>
+      </div>
+    </div>
+
+    <div class="row p-4 justify-content-evenly">
+      <div class="col-6">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <h3> Sent :</h3>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let message of sent">
+            <tr>
+              <td>
+                <b>
+                  <i>{{message.time | date: "MMM d, y 'at' h:mm a"}}</i>
+                </b>
+                <p>
+                  {{message.text}}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-6">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <h3> Received :</h3>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let message of received">
+            <tr>
+              <td>
+                <b>
+                  <i>{{message.time | date: "MMM d, y 'at' h:mm a"}}</i>
+                </b>
+                <p>
+                  {{message.username | uppercase}} : {{message.text}}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>
-            <h3> Received :</h3>
-          </th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let message of received">
-        <tr>
-          <td>
-            <b>
-              {{message.time | date: "MMM d, y 'at' h:mm a"}}
-            </b>
-            <p>
-              {{message.username}} : {{message.text}}
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </div>

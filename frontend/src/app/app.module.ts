@@ -7,6 +7,9 @@ import { WebsocketService } from './services/websocket.service';
 import { ChatService } from './services/chat.service';
 import { FormsModule } from '@angular/forms';
 
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -14,7 +17,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [WebsocketService, ChatService],
   bootstrap: [AppComponent]
