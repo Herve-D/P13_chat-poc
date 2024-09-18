@@ -12,55 +12,57 @@
   <div *ngIf="connected">
     <div>
       <input type="text" id="text" [(ngModel)]="text" placeholder="Text" />
-      <button [disabled]="!text" (click)="sendMessage()"></button>
+      <button [disabled]="!text" (click)="sendMessage()">Send</button>
     </div>
   </div>
 </div>
 
 <div>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          <h3> Sent :</h3>
-        </th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let message of sent">
-      <tr>
-        <td>
-          <b>
-            {{message.time | date: "MMM d, y 'at' h:mm a"}}
-          </b>
-          <p>
-            {{message.text}}
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <h3> Sent :</h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let message of sent">
+        <tr>
+          <td>
+            <b>
+              {{message.time | date: "MMM d, y 'at' h:mm a"}}
+            </b>
+            <p>
+              {{message.text}}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          <h3> Received :</h3>
-        </th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let message of received">
-      <tr>
-        <td>
-          <b>
-            {{message.time | date: "MMM d, y 'at' h:mm a"}}
-          </b>
-          <p>
-            {{message.username}} : {{message.text}}
-          </p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <h3> Received :</h3>
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let message of received">
+        <tr>
+          <td>
+            <b>
+              {{message.time | date: "MMM d, y 'at' h:mm a"}}
+            </b>
+            <p>
+              {{message.username}} : {{message.text}}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
