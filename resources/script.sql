@@ -1,0 +1,73 @@
+CREATE TABLE `USERS` (
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`firstName` VARCHAR(255),
+	`lastName` VARCHAR(255),
+	`email` VARCHAR(255),
+	`password` VARCHAR(255),
+	`birthday` TIMESTAMP,
+	`address` VARCHAR(255),
+	`postCode` INTEGER,
+	`city` VARCHAR(255),
+	`country` VARCHAR(255),
+	`createdAt` TIMESTAMP,
+	`updatedAt` TIMESTAMP
+);
+
+CREATE TABLE `MESSAGES` (
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`userId` INTEGER,
+	`subject` VARCHAR(255),
+	`content` VARCHAR(255),
+	`sentAt` TIMESTAMP,
+	`answeredAt` TIMESTAMP
+);
+
+CREATE TABLE `SUPPORTS` (
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`firstName` VARCHAR(255),
+	`lastName` VARCHAR(255),
+	`email` VARCHAR(255),
+	`password` VARCHAR(255)
+);
+
+CREATE TABLE `AGENCIES` (
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`name` VARCHAR(255),
+	`address` VARCHAR(255),
+	`postCode` INTEGER,
+	`city` VARCHAR(255),
+	`country` VARCHAR(255)
+);
+
+CREATE TABLE `VEHICLES` (
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`category` VARCHAR(255),
+	`type` VARCHAR(255),
+	`transmission` VARCHAR(255),
+	`fuel` VARCHAR(255),
+	`agencyId` INTEGER
+);
+
+CREATE TABLE `BOOKINGS` (
+	`id` INTEGER PRIMARY KEY AUTO_INCREMENT,
+	`userId` INTEGER,
+	`agencyId` INTEGER,
+	`departureLocation` VARCHAR(255),
+	`returnLocation` VARCHAR(255),
+	`departureTime` TIMESTAMP,
+	`returnTime` TIMESTAMP,
+	`vehicleId` INTEGER,
+	`price` INTEGER,
+	`paymentStatus` VARCHAR(255),
+	`bookingStatus` VARCHAR(255),
+	`createdAt` TIMESTAMP,
+	`updatedAt` TIMESTAMP
+);
+
+CREATE UNIQUE INDEX `USERS_index` ON `USERS` (`email`);
+
+ALTER TABLE `MESSAGES` ADD FOREIGN KEY (`userId`) REFERENCES `USERS` (`id`);
+ALTER TABLE `VEHICLES` ADD FOREIGN KEY (`agencyId`) REFERENCES `AGENCIES` (`id`);
+ALTER TABLE `BOOKINGS` ADD FOREIGN KEY (`userId`) REFERENCES `USERS` (`id`);
+ALTER TABLE `BOOKINGS` ADD FOREIGN KEY (`agencyId`) REFERENCES `AGENCIES` (`id`);
+ALTER TABLE `BOOKINGS` ADD FOREIGN KEY (`vehicleId`) REFERENCES `VEHICLES` (`id`);
